@@ -16,7 +16,7 @@ class MyPlugin(Star):
 
     @filter.command("nu")
     async def helloworld(self, event: AstrMessageEvent):
-        """这是一个 Nutrimatic 查询指令"""
+        """使用 Nutrimatic 查询表达式，并返回最好10条指令"""
         query_message = event.message_str[3:].strip()  # 用户发的纯文本消息字符串
         if not query_message:
             yield event.plain_result("查询内容为空！")
@@ -42,7 +42,7 @@ class MyPlugin(Star):
             results.append((font_size, text))
         summary_str = ""
         for i, (size, text) in enumerate(results, 1):
-            summary_str += f"{size[:4]:<10} {text}\n"
+            summary_str += f"{size[:5]:<3} {text}\n"
         summary_str += f"\n显示 {len(results)} 个结果"
         # 发送一条纯文本消息
         yield event.plain_result(summary_str)
