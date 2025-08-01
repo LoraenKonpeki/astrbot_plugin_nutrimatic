@@ -42,7 +42,7 @@ class MyPlugin(Star):
             results.append((font_size, text))
         summary_str = ""
         for i, (size, text) in enumerate(results, 1):
-            summary_str += f"{size[:5]:<3} {text}\n"
+            summary_str += f"{size[:5]:<8} {text}\n"
         summary_str += f"\n显示 {len(results)} 个结果"
         # 发送一条纯文本消息
         yield event.plain_result(summary_str)
