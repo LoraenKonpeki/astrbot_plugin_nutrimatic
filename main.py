@@ -28,6 +28,7 @@ class MyPlugin(Star):
             "q": "nutrimatic",
             "go": "Go"
         }
+        logger.info(f"查询内容: {query_message}")
         data['q'] = query_message  # 将查询字符串替换为变量query
         res = req.get(url, params=data)
         soup = bs.BeautifulSoup(res.text, "html.parser")
