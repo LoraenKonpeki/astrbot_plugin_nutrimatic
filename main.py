@@ -19,7 +19,7 @@ class MyPlugin(Star):
         """这是一个 Nutrimatic 查询指令"""
         query_message = event.message_str[3:].strip()  # 用户发的纯文本消息字符串
         if not query_message:
-            return event.plain_result("查询内容为空！")
+            yield event.plain_result("查询内容为空！")
         # 用户所发的消息的消息链 # from astrbot.api.message_components import *
         message_chain = event.get_messages()
         logger.info(message_chain)
