@@ -14,8 +14,34 @@ class MyPlugin(Star):
     async def initialize(self):
         """可选择实现异步的插件初始化方法，当实例化该插件类之后会自动调用该方法。"""
 
+    @filter.command("nuhelp")
+    async def nutrimatic_help(self, event: AstrMessageEvent):
+        """使用 Nutrimatic 查询表达式，并返回最好10条指令"""
+        # 该方法会在插件加载时被调用
+        message_chain = event.get_messages()
+        logger.info(message_chain)
+        help = """ Nutrimatic 查询表达式帮助:
+        Syntax
+            a-z, 0-9, space - literal match
+            [], (), {}, |, ., ?, *, + - same as regexp
+            "expr" - forbid word breaks without a space or hyphen
+            expr&expr - both expressions must match
+            <aaagmnr>, <(gram)(ana)> - anagram of contents (note warnings)
+            _ (underscore) - alphanumeric, not space: [a-z0-9]
+            # (number sign) - digit: [0-9]
+            - (hyphen) - optional space: ( ?)
+            A - alphabetic: [a-z]
+            C - consonant (including y)
+            V - vowel ([aeiou], not y)
+        Examples
+            "C*aC*eC*iC*oC*uC*yC*" - facetiously
+            867-#### - for a good time call
+            "_ ___ ___ _*burger" - lol
+        """
+        yield event.plain_result(help)
+
     @filter.command("nu")
-    async def helloworld(self, event: AstrMessageEvent):
+    async def nutrimatic_go(self, event: AstrMessageEvent):
         """使用 Nutrimatic 查询表达式，并返回最好10条指令"""
         query_message = event.message_str[3:].strip()  # 用户发的纯文本消息字符串
         if not query_message:
