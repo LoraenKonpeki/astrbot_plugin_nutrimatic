@@ -1,5 +1,5 @@
-name: nutrimatic # 这是你的插件的唯一识别名。
-desc: 基于AstrBot在群聊中方便使用nutrimatic # 插件简短描述
-version: v1.0 # 插件版本号。格式：v1.1.1 或者 v1.1
-author: Loraen_Konpeki # 作者
-repo: https://github.com/LoraenKonpeki/astrbot_plugin_nutrimatic # 插件的仓库地址
+name: nutrimatic 
+desc: 基于AstrBot在群聊中方便使用nutrimatic 
+version: v1.0 
+author: Loraen_Konpeki 
+repo: https://github.com/LoraenKonpeki/astrbot_plugin_nutrimatic 
