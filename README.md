@@ -1,3 +1,5 @@
-# 在群聊里方便Nutrimatic
+# 使用AstrBot在群聊里轻松Nutrimatic的插件
 
-/nu 或者 /nutrimatic 
+基本命令：`/nu %Nutrimatic表达式%`
+
+默认返回 Nutrimatic 结果中最优先的 10 条结果
