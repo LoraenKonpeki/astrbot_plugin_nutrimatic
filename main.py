@@ -5,12 +5,6 @@ import requests as req
 import bs4 as bs
 import re
 
-url = "https://nutrimatic.org/2024"
-data = {
-    "q": "nutrimatic",
-    "go": "Go"
-}
-
 
 @register("nutrimatic", "Loraen_Konpeki", "一个简单的 Nutrimatic 插件", "1.0.0")
 class MyPlugin(Star):
@@ -29,6 +23,11 @@ class MyPlugin(Star):
         # 用户所发的消息的消息链 # from astrbot.api.message_components import *
         message_chain = event.get_messages()
         logger.info(message_chain)
+        url = "https://nutrimatic.org/2024"
+        data = {
+            "q": "nutrimatic",
+            "go": "Go"
+        }
         data['q'] = query_message  # 将查询字符串替换为变量query
         res = req.get(url, params=data)
         soup = bs.BeautifulSoup(res.text, "html.parser")
