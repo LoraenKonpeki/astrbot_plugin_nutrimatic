@@ -42,8 +42,8 @@ class MyPlugin(Star):
             results.append((font_size, text))
         summary_str = ""
         for i, (size, text) in enumerate(results, 1):
-            summary_str += f"{size:<10} {text}\n"
-        summary_str += f"\n共牛出了 {len(results)} 个结果"
+            summary_str += f"{size[:3]:<10} {text}\n"
+        summary_str += f"\n显示 {len(results)} 个结果"
         # 发送一条纯文本消息
         yield event.plain_result(summary_str)
         # yield event.plain_result(f"Hello, {user_name}, 你发了 {message_str}!")
