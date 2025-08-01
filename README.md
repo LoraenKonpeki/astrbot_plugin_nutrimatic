@@ -1,9 +1,3 @@
-# helloworld
+# 在群聊里方便Nutrimatic
 
-AstrBot 插件模板
-
-A template plugin for AstrBot plugin feature
-
-# 支持
-
-[帮助文档](https://astrbot.app)
+/nu 或者 /nutrimatic 
