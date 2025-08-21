@@ -20,23 +20,24 @@ class MyPlugin(Star):
         # 该方法会在插件加载时被调用
         message_chain = event.get_messages()
         logger.info(message_chain)
-        help = """ Nutrimatic 查询表达式帮助:
-        Syntax
-            a-z, 0-9, space - literal match
-            [], (), {}, |, ., ?, *, + - same as regexp
-            "expr" - forbid word breaks without a space or hyphen
-            expr&expr - both expressions must match
-            <aaagmnr>, <(gram)(ana)> - anagram of contents (note warnings)
-            _ (underscore) - alphanumeric, not space: [a-z0-9]
-            # (number sign) - digit: [0-9]
-            - (hyphen) - optional space: ( ?)
-            A - alphabetic: [a-z]
-            C - consonant (including y)
-            V - vowel ([aeiou], not y)
-        Examples
-            "C*aC*eC*iC*oC*uC*yC*" - facetiously
-            867-#### - for a good time call
-            "_ ___ ___ _*burger" - lol
+        help = """ 
+Nutrimatic 查询表达式帮助:
+Syntax
+    a-z, 0-9, space - literal match
+    [], (), {}, |, ., ?, *, + - same as regexp
+    "expr" - forbid word breaks without a space or hyphen
+    expr&expr - both expressions must match
+    <aaagmnr>, <(gram)(ana)> - anagram of contents (note warnings)
+    _ (underscore) - alphanumeric, not space: [a-z0-9]
+    # (number sign) - digit: [0-9]
+    - (hyphen) - optional space: ( ?)
+    A - alphabetic: [a-z]
+    C - consonant (including y)
+    V - vowel ([aeiou], not y)
+Examples
+    "C*aC*eC*iC*oC*uC*yC*" - facetiously
+    867-#### - for a good time call
+    "_ ___ ___ _*burger" - lol
         """
         yield event.plain_result(help)
 
@@ -50,19 +51,16 @@ class MyPlugin(Star):
         message_chain = event.get_messages()
         logger.info(message_chain)
         url = "https://nutrimatic.org/2024"
-        data = {
-            "q": "nutrimatic",
-            "go": "Go"
-        }
+        data = {"q": "nutrimatic", "go": "Go"}
         logger.info(f"查询内容: {query_message}")
-        data['q'] = query_message  # 将查询字符串替换为变量query
+        data["q"] = query_message  # 将查询字符串替换为变量query
         res = req.get(url, params=data)
         soup = bs.BeautifulSoup(res.text, "html.parser")
-        spans = soup.find_all('span', limit=10)  # limit=10 只获取前10个匹配的元素
+        spans = soup.find_all("span", limit=10)  # limit=10 只获取前10个匹配的元素
         results = []
         for span in spans:
-            style = span.get('style', '')
-            font_size_match = re.search(r'font-size:\s*([\d.]+)em', style)
+            style = span.get("style", "")
+            font_size_match = re.search(r"font-size:\s*([\d.]+)em", style)
             font_size = font_size_match.group(1) if font_size_match else "未知"
             text = span.get_text(strip=True)
             results.append((font_size, text))
